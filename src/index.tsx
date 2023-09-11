@@ -1,6 +1,6 @@
 import { html } from '@elysiajs/html';
 import { Elysia, t } from 'elysia';
-import * as elements from 'typed-html';
+import elements from 'typed-html';
 
 import { TodoItem } from './components/Todo/Item';
 import { TodoList } from './components/Todo/List';
