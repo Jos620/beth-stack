@@ -5,6 +5,7 @@ import elements from 'typed-html';
 import { TodoItem } from './components/Todo/Item';
 import { TodoList } from './components/Todo/List';
 import { db } from './database';
+import { Todo } from './entities/todo';
 
 const app = new Elysia()
   .use(html())
@@ -16,6 +17,28 @@ const app = new Elysia()
         </body>
       </BaseHtml>,
     ),
+  )
+  .post(
+    '/todos',
+    ({ body }) => {
+      if (body.content.length === 0) {
+        throw new Error('Content cannot be empty');
+      }
+
+      const newTodo: Todo = {
+        id: db.length + 1,
+        content: body.content,
+        completed: false,
+      };
+      db.push(newTodo);
+
+      return <TodoItem {...newTodo} />;
+    },
+    {
+      body: t.Object({
+        content: t.String(),
+      }),
+    },
   )
   .post(
     '/todos/toggle/:id',
