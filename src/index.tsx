@@ -19,7 +19,6 @@ const app = new Elysia()
       </BaseHtml>,
     ),
   )
-  .post('/click', () => <p class="text-dark-400">Clicked!</p>)
   .get('/todos', () => <TodoList todos={db} />)
   .listen(3000);
 console.log(
