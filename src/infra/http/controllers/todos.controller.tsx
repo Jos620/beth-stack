@@ -14,10 +14,6 @@ export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/',
     async ({ body }) => {
-      if (body.content.length === 0) {
-        throw new Error('Content cannot be empty');
-      }
-
       const newTodo = await createTodo(body.content);
 
       return <TodoItem {...newTodo} />;

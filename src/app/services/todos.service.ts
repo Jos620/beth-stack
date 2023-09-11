@@ -8,6 +8,10 @@ export async function getTodo(id: number) {
 }
 
 export async function createTodo(content: string) {
+  if (content.length === 0) {
+    throw new Error('Content cannot be empty');
+  }
+
   const newTodo = await db
     .insert(todos)
     .values({
