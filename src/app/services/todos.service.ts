@@ -3,6 +3,10 @@ import { eq } from 'drizzle-orm';
 import { db } from '@/infra/database';
 import { todos } from '@/infra/database/schema';
 
+export async function getTodo(id: number) {
+  return await db.select().from(todos).where(eq(todos.id, id)).get();
+}
+
 export async function createTodo(content: string) {
   const newTodo = await db
     .insert(todos)
@@ -16,7 +20,7 @@ export async function createTodo(content: string) {
 }
 
 export async function toggleTodo(id: number) {
-  const oldTodo = await db.select().from(todos).where(eq(todos.id, id)).get();
+  const oldTodo = await getTodo(id);
 
   const newTodo = await db
     .update(todos)
