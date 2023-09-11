@@ -7,10 +7,14 @@
     "start": "bun run src/index.tsx"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
     "bun-types": "latest",
+    "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^3.0.3",
     "typed-html": "^3.0.1",
     "typescript": "^5.2.2"
   },
@@ -19,10 +23,6 @@
   },
   "dependencies": {
     "@elysiajs/html": "^0.6.5",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
-    "elysia": "^0.6.22",
-    "eslint": "^8.49.0",
-    "prettier": "^3.0.3"
+    "elysia": "^0.6.22"
   }
 }
