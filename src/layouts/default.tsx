@@ -1,6 +1,6 @@
 import elements from 'typed-html';
 
-import { BaseHtml } from '../.';
+import { BaseHtml } from '@';
 
 export function DefaultLayout({ children }: elements.Children) {
   return (

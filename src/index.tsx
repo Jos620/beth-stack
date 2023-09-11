@@ -2,11 +2,11 @@ import { html } from '@elysiajs/html';
 import { Elysia } from 'elysia';
 import elements from 'typed-html';
 
-import { TodoList } from './components/Todo/List';
-import { db } from './infra/database';
-import { todos } from './infra/database/schema';
-import { todosController } from './infra/http/controllers/todos.controller';
-import { DefaultLayout } from './layouts/default';
+import { TodoList } from '@/components/Todo/List';
+import { db } from '@/infra/database';
+import { todos } from '@/infra/database/schema';
+import { todosController } from '@/infra/http/controllers/todos.controller';
+import { DefaultLayout } from '@/layouts/default';
 
 const app = new Elysia()
   .use(html())

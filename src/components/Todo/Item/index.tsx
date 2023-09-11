@@ -1,6 +1,6 @@
 import elements from 'typed-html';
 
-import { Todo } from '../../../entities/todo';
+import { Todo } from '@/entities/todo';
 
 export function TodoItem({ content, completed, id }: Todo) {
   const containerId = `todo-${id}`;
