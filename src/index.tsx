@@ -1,36 +1,34 @@
 import { html } from '@elysiajs/html';
+import { eq } from 'drizzle-orm';
 import { Elysia, t } from 'elysia';
 import elements from 'typed-html';
 
 import { TodoItem } from './components/Todo/Item';
 import { TodoList } from './components/Todo/List';
 import { db } from './database';
-import { Todo } from './entities/todo';
+import { todos } from './database/schema';
 
 const app = new Elysia()
   .use(html())
-  .get('/', ({ html }) =>
-    html(
+  .get('/', async ({ html }) => {
+    const data = await db.select().from(todos).all();
+
+    return html(
       <BaseHtml>
         <body class="flex justify-center items-center w-screen h-screen">
-          <TodoList todos={db} />
+          <TodoList todos={data} />
         </body>
       </BaseHtml>,
-    ),
-  )
+    );
+  })
   .post(
     '/todos',
-    ({ body }) => {
+    async ({ body }) => {
       if (body.content.length === 0) {
         throw new Error('Content cannot be empty');
       }
 
-      const newTodo: Todo = {
-        id: db.length + 1,
-        content: body.content,
-        completed: false,
-      };
-      db.push(newTodo);
+      const newTodo = await db.insert(todos).values(body).returning().get();
 
       return <TodoItem {...newTodo} />;
     },
@@ -42,12 +40,21 @@ const app = new Elysia()
   )
   .post(
     '/todos/toggle/:id',
-    ({ params }) => {
-      const todo = db.find((todo) => todo.id === params.id);
-      if (todo) {
-        todo.completed = !todo.completed;
-        return <TodoItem {...todo} />;
-      }
+    async ({ params }) => {
+      const oldTodo = await db
+        .select()
+        .from(todos)
+        .where(eq(todos.id, params.id))
+        .get();
+
+      const newTodo = await db
+        .update(todos)
+        .set({ completed: !oldTodo?.completed })
+        .where(eq(todos.id, params.id))
+        .returning()
+        .get();
+
+      return <TodoItem {...newTodo} />;
     },
     {
       params: t.Object({
@@ -57,11 +64,8 @@ const app = new Elysia()
   )
   .delete(
     '/todos/:id',
-    ({ params }) => {
-      const index = db.findIndex((todo) => todo.id === params.id);
-      if (index > -1) {
-        db.splice(index, 1);
-      }
+    async ({ params }) => {
+      await db.delete(todos).where(eq(todos.id, params.id)).run();
     },
     {
       params: t.Object({
