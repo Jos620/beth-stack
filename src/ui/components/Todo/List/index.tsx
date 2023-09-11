@@ -1,6 +1,6 @@
 import elements from 'typed-html';
 
-import { Todo } from '@/entities/todo';
+import { Todo } from '@/app/entities/todo';
 
 import { TodoForm } from '../Form';
 import { TodoItem } from '../Item';
