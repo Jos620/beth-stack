@@ -11,11 +11,13 @@ export function TodoItem({ content, completed, id }: Todo) {
         checked={completed}
         hx-post={`/todos/toggle/${id}`}
         hx-target={`#todo-${id}`}
+        hx-swap="outerHTML"
       />
       <button
         class="text-red-500"
         hx-delete={`/todos/${id}`}
         hx-target={`#todo-${id}`}
+        hx-swap="outerHTML"
       >
         X
       </button>
