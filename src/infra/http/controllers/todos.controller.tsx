@@ -1,10 +1,11 @@
 import { eq } from 'drizzle-orm';
-import { Elysia, t } from 'elysia';
+import { Elysia } from 'elysia';
 import elements from 'typed-html';
 
 import { TodoItem } from '../../../components/Todo/Item';
 import { db } from '../../../database';
 import { todos } from '../../../database/schema';
+import { CreateTodoDto, UpdateTodoDto } from '../dto/todos';
 
 export const todosController = new Elysia()
   .post(
@@ -19,9 +20,7 @@ export const todosController = new Elysia()
       return <TodoItem {...newTodo} />;
     },
     {
-      body: t.Object({
-        content: t.String(),
-      }),
+      body: CreateTodoDto,
     },
   )
   .post(
@@ -43,9 +42,7 @@ export const todosController = new Elysia()
       return <TodoItem {...newTodo} />;
     },
     {
-      params: t.Object({
-        id: t.Numeric(),
-      }),
+      params: UpdateTodoDto,
     },
   )
   .delete(
@@ -54,8 +51,6 @@ export const todosController = new Elysia()
       await db.delete(todos).where(eq(todos.id, params.id)).run();
     },
     {
-      params: t.Object({
-        id: t.Numeric(),
-      }),
+      params: UpdateTodoDto,
     },
   );
