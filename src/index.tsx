@@ -32,6 +32,20 @@ const app = new Elysia()
       }),
     },
   )
+  .delete(
+    '/todos/:id',
+    ({ params }) => {
+      const index = db.findIndex((todo) => todo.id === params.id);
+      if (index > -1) {
+        db.splice(index, 1);
+      }
+    },
+    {
+      params: t.Object({
+        id: t.Numeric(),
+      }),
+    },
+  )
   .listen(3000);
 console.log(
   `Server running at http://${app.server?.hostname}:${app.server?.port}`,
