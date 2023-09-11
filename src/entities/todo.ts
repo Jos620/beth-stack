@@ -1,5 +1,5 @@
-export interface Todo {
-  id: number;
-  content: string;
-  completed: boolean;
-}
+import { InferSelectModel } from 'drizzle-orm';
+
+import { todos } from '../database/schema';
+
+export type Todo = InferSelectModel<typeof todos>;
