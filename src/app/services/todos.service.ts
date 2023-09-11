@@ -31,3 +31,7 @@ export async function toggleTodo(id: number) {
 
   return newTodo;
 }
+
+export async function deleteTodo(id: number) {
+  await db.delete(todos).where(eq(todos.id, id)).run();
+}
