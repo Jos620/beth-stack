@@ -2,6 +2,10 @@
   "name": "beth-stack",
   "module": "src/index.tsx",
   "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.tsx",
+    "start": "bun run src/index.tsx"
+  },
   "devDependencies": {
     "bun-types": "latest",
     "eslint-config-prettier": "^9.0.0",
