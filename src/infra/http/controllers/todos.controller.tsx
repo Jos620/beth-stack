@@ -7,7 +7,7 @@ import { db } from '../../database';
 import { todos } from '../../database/schema';
 import { CreateTodoDto, UpdateTodoDto } from '../dto/todos';
 
-export const todosController = new Elysia()
+export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/',
     async ({ body }) => {
