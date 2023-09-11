@@ -2,24 +2,25 @@ import { html } from '@elysiajs/html';
 import { Elysia } from 'elysia';
 import * as elements from 'typed-html';
 
+import { TodoList } from './components/Todo/List';
+import { db } from './database';
+
 const app = new Elysia()
   .use(html())
   .get('/', ({ html }) =>
     html(
       <BaseHtml>
-        <body class="flex justify-center items-center w-screen h-screen">
-          <button
-            hx-post="/click"
-            hx-swap="outerHTML"
-            class="bg-blue-500 rounded text-white p-2"
-          >
-            Click me
-          </button>
-        </body>
+        <body
+          class="flex justify-center items-center w-screen h-screen"
+          hx-get="/todos"
+          hx-trigger="load"
+          hx-swap="innerHTMl"
+        />
       </BaseHtml>,
     ),
   )
   .post('/click', () => <p class="text-dark-400">Clicked!</p>)
+  .get('/todos', () => <TodoList todos={db} />)
   .listen(3000);
 console.log(
   `Server running at http://${app.server?.hostname}:${app.server?.port}`,
