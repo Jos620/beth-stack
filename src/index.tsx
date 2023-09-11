@@ -11,16 +11,12 @@ const app = new Elysia()
   .get('/', ({ html }) =>
     html(
       <BaseHtml>
-        <body
-          class="flex justify-center items-center w-screen h-screen"
-          hx-get="/todos"
-          hx-trigger="load"
-          hx-swap="innerHTMl"
-        />
+        <body class="flex justify-center items-center w-screen h-screen">
+          <TodoList todos={db} />
+        </body>
       </BaseHtml>,
     ),
   )
-  .get('/todos', () => <TodoList todos={db} />)
   .post(
     '/todos/toggle/:id',
     ({ params }) => {
