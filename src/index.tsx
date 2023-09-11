@@ -7,6 +7,7 @@ import { TodoItem } from './components/Todo/Item';
 import { TodoList } from './components/Todo/List';
 import { db } from './database';
 import { todos } from './database/schema';
+import { DefaultLayout } from './layouts/default';
 
 const app = new Elysia()
   .use(html())
@@ -14,11 +15,9 @@ const app = new Elysia()
     const data = await db.select().from(todos).all();
 
     return html(
-      <BaseHtml>
-        <body class="flex justify-center items-center w-screen h-screen">
-          <TodoList todos={data} />
-        </body>
-      </BaseHtml>,
+      <DefaultLayout>
+        <TodoList todos={data} />
+      </DefaultLayout>,
     );
   })
   .post(
@@ -78,7 +77,7 @@ console.log(
   `Server running at http://${app.server?.hostname}:${app.server?.port}`,
 );
 
-const BaseHtml = ({ children }: elements.Children) => `
+export const BaseHtml = ({ children }: elements.Children) => `
   <!DOCTYPE html>
   <html lang="en">
 
