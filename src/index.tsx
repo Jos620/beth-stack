@@ -2,20 +2,20 @@ import { html } from '@elysiajs/html';
 import { Elysia } from 'elysia';
 import elements from 'typed-html';
 
-import { db } from '@/infra/database';
-import { todos } from '@/infra/database/schema';
 import { todosController } from '@/infra/http/controllers/todos.controller';
 import { TodoList } from '@/ui/components/Todo/List';
 import { DefaultLayout } from '@/ui/layouts/default';
 
+import { getAllTodos } from './app/services/todos.service';
+
 const app = new Elysia()
   .use(html())
   .get('/', async ({ html }) => {
-    const data = await db.select().from(todos).all();
+    const todos = await getAllTodos();
 
     return html(
       <DefaultLayout>
-        <TodoList todos={data} />
+        <TodoList todos={todos} />
       </DefaultLayout>,
     );
   })

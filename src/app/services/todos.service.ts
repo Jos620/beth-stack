@@ -7,6 +7,10 @@ export async function getTodo(id: number) {
   return await db.select().from(todos).where(eq(todos.id, id)).get();
 }
 
+export async function getAllTodos() {
+  return await db.select().from(todos).all();
+}
+
 export async function createTodo(content: string) {
   if (content.length === 0) {
     throw new Error('Content cannot be empty');
