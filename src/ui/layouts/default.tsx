@@ -14,19 +14,19 @@ export const DefaultBaseHtml = ({ children }: elements.Children) => `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css"></script>
   </head>
 
-  ${children}
+  <body hx-boost="true">
+    ${children}
+  </body>
+
   </html>
 `;
 
 export function DefaultLayout({ children }: elements.Children) {
   return (
     <DefaultBaseHtml>
-      <body
-        hx-boost="true"
-        class="flex flex-col justify-center items-center w-screen h-screen"
-      >
+      <main class="flex flex-col justify-center items-center w-screen h-screen">
         {children}
-      </body>
+      </main>
     </DefaultBaseHtml>
   );
 }
