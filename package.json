@@ -6,7 +6,8 @@
     "dev": "bun run --watch src/index.tsx",
     "start": "bun run src/index.tsx",
     "db:push": "drizzle-kit push:sqlite",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.6.0",
@@ -18,6 +19,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.3",
+    "tsc": "^2.0.4",
     "typed-html": "^3.0.1",
     "typescript": "^5.2.2"
   },
