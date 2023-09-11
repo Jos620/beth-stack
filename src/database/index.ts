@@ -1,8 +1,14 @@
-import { Todo } from '../entities/todo';
+import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/libsql';
 
-export const db: Todo[] = [
-  { id: 1, content: 'Learn Bun', completed: true },
-  { id: 2, content: 'Learn Elysia', completed: false },
-  { id: 3, content: 'Learn Turso', completed: false },
-  { id: 4, content: 'Learn HTMX', completed: false },
-];
+import * as schema from './schema';
+
+const client = createClient({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.DATABASE_AUTH_TOKEN,
+});
+
+export const db = drizzle(client, {
+  schema,
+  logger: true,
+});
