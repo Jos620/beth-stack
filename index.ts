@@ -1,10 +1,13 @@
-import { Elysia } from 'elysia'
-import { html } from '@elysiajs/html'
+import { html } from '@elysiajs/html';
+import { Elysia } from 'elysia';
 
-const app = new Elysia().use(html()).get('/', ({ html }) => html(baseHtml)).listen(3000)
+const app = new Elysia()
+  .use(html())
+  .get('/', ({ html }) => html(baseHtml))
+  .listen(3000);
 console.log(
-  `Server running at http://${app.server?.hostname}:${app.server?.port}`
-)
+  `Server running at http://${app.server?.hostname}:${app.server?.port}`,
+);
 
 const baseHtml = `
   <!DOCTYPE html>
@@ -18,4 +21,4 @@ const baseHtml = `
     <h1>Hey there!</h1>
   </body>
   </html>
-`
+`;
