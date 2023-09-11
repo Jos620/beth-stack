@@ -1,9 +1,8 @@
 import { html } from '@elysiajs/html';
 import { Elysia } from 'elysia';
 
+import { mainController } from '@/infra/http/controllers/main.controller';
 import { todosController } from '@/infra/http/controllers/todos.controller';
-
-import { mainController } from './infra/http/controllers/index.controller';
 
 const app = new Elysia()
   .use(html())
