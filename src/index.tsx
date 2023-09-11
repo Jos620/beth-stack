@@ -20,57 +20,60 @@ const app = new Elysia()
       </DefaultLayout>,
     );
   })
-  .post(
-    '/todos',
-    async ({ body }) => {
-      if (body.content.length === 0) {
-        throw new Error('Content cannot be empty');
-      }
+  .group('/todos', (app) =>
+    app
+      .post(
+        '/',
+        async ({ body }) => {
+          if (body.content.length === 0) {
+            throw new Error('Content cannot be empty');
+          }
 
-      const newTodo = await db.insert(todos).values(body).returning().get();
+          const newTodo = await db.insert(todos).values(body).returning().get();
 
-      return <TodoItem {...newTodo} />;
-    },
-    {
-      body: t.Object({
-        content: t.String(),
-      }),
-    },
-  )
-  .post(
-    '/todos/toggle/:id',
-    async ({ params }) => {
-      const oldTodo = await db
-        .select()
-        .from(todos)
-        .where(eq(todos.id, params.id))
-        .get();
+          return <TodoItem {...newTodo} />;
+        },
+        {
+          body: t.Object({
+            content: t.String(),
+          }),
+        },
+      )
+      .post(
+        '/toggle/:id',
+        async ({ params }) => {
+          const oldTodo = await db
+            .select()
+            .from(todos)
+            .where(eq(todos.id, params.id))
+            .get();
 
-      const newTodo = await db
-        .update(todos)
-        .set({ completed: !oldTodo?.completed })
-        .where(eq(todos.id, params.id))
-        .returning()
-        .get();
+          const newTodo = await db
+            .update(todos)
+            .set({ completed: !oldTodo?.completed })
+            .where(eq(todos.id, params.id))
+            .returning()
+            .get();
 
-      return <TodoItem {...newTodo} />;
-    },
-    {
-      params: t.Object({
-        id: t.Numeric(),
-      }),
-    },
-  )
-  .delete(
-    '/todos/:id',
-    async ({ params }) => {
-      await db.delete(todos).where(eq(todos.id, params.id)).run();
-    },
-    {
-      params: t.Object({
-        id: t.Numeric(),
-      }),
-    },
+          return <TodoItem {...newTodo} />;
+        },
+        {
+          params: t.Object({
+            id: t.Numeric(),
+          }),
+        },
+      )
+      .delete(
+        '/:id',
+        async ({ params }) => {
+          await db.delete(todos).where(eq(todos.id, params.id)).run();
+        },
+        {
+          params: t.Object({
+            id: t.Numeric(),
+          }),
+        },
+      ),
   )
   .listen(3000);
 console.log(
