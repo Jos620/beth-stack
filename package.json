@@ -1,12 +1,13 @@
 {
   "name": "beth-stack",
-  "module": "index.ts",
+  "module": "index.tsx",
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "typed-html": "^3.0.1",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
