@@ -1,6 +1,6 @@
 {
   "name": "beth-stack",
-  "module": "index.tsx",
+  "module": "src/index.tsx",
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",
