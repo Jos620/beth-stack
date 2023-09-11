@@ -2,6 +2,7 @@ import { eq } from 'drizzle-orm';
 import { Elysia } from 'elysia';
 import elements from 'typed-html';
 
+import { createTodo } from '@/app/services/todos.service';
 import { db } from '@/infra/database';
 import { todos } from '@/infra/database/schema';
 import { TodoItem } from '@/ui/components/Todo/Item';
@@ -16,7 +17,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
         throw new Error('Content cannot be empty');
       }
 
-      const newTodo = await db.insert(todos).values(body).returning().get();
+      const newTodo = await createTodo(body.content);
 
       return <TodoItem {...newTodo} />;
     },
