@@ -11,7 +11,7 @@ export const DefaultBaseHtml = ({ children }: elements.Children) => /* html */ `
     <script src="https://unpkg.com/htmx.org@1.9.3"></script>
     <script src="https://unpkg.com/alpinejs@3" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css" />
   </head>
 
   <body hx-boost="true">
