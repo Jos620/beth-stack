@@ -55,7 +55,7 @@ export class DrizzleRepository implements TodosRepository {
     return todos.map(DrizzleTodoMapper.toDomain);
   }
 
-  async createTodo(params: { content: string }): Promise<Todo> {
+  async createTodo(params: { content: Todo['content'] }): Promise<Todo> {
     const newTodo = await this.db
       .insert(todos_table)
       .values(params)
@@ -65,7 +65,7 @@ export class DrizzleRepository implements TodosRepository {
     return DrizzleTodoMapper.toDomain(newTodo);
   }
 
-  async updateTodo(id: string, overrides: Partial<Todo>): Promise<Todo> {
+  async updateTodo(id: Todo['id'], overrides: Partial<Todo>): Promise<Todo> {
     const newTodo = await this.db
       .update(todos_table)
       .set({
@@ -79,7 +79,7 @@ export class DrizzleRepository implements TodosRepository {
     return DrizzleTodoMapper.toDomain(newTodo);
   }
 
-  async deleteTodo(id: string): Promise<void> {
+  async deleteTodo(id: Todo['id']): Promise<void> {
     await this.db
       .delete(todos_table)
       .where(eq(todos_table.id, parseInt(id)))

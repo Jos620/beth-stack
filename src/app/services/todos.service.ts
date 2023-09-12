@@ -1,6 +1,7 @@
+import { Todo } from '../entities/todo';
 import { TodosRepository } from '../repositories/todos.repo';
 
-export async function getTodo(db: TodosRepository, id: number) {
+export async function getTodo(db: TodosRepository, id: Todo['id']) {
   const todo = await db.getTodo(id);
 
   if (!todo) {
@@ -14,7 +15,10 @@ export async function getAllTodos(db: TodosRepository) {
   return (await db.getTodos()) || [];
 }
 
-export async function createTodo(db: TodosRepository, content: string) {
+export async function createTodo(
+  db: TodosRepository,
+  content: Todo['content'],
+) {
   if (content.length === 0) {
     throw new Error('Content cannot be empty');
   }
@@ -26,7 +30,7 @@ export async function createTodo(db: TodosRepository, content: string) {
   return newTodo;
 }
 
-export async function toggleTodo(db: TodosRepository, id: number) {
+export async function toggleTodo(db: TodosRepository, id: Todo['id']) {
   const oldTodo = await getTodo(db, id);
 
   const newTodo = await db.updateTodo(id, {
@@ -36,6 +40,6 @@ export async function toggleTodo(db: TodosRepository, id: number) {
   return newTodo;
 }
 
-export async function deleteTodo(db: TodosRepository, id: number) {
+export async function deleteTodo(db: TodosRepository, id: Todo['id']) {
   return await db.deleteTodo(id);
 }

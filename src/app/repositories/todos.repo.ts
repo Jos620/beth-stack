@@ -1,9 +1,9 @@
 import { Todo } from '../entities/todo';
 
 export interface TodosRepository {
-  getTodo(id: number): Promise<Todo | null>;
+  getTodo(id: Todo['id']): Promise<Todo | null>;
   getTodos(): Promise<Todo[]>;
-  createTodo(params: { content: string }): Promise<Todo>;
-  updateTodo(id: number, overrides: Partial<Todo>): Promise<Todo>;
-  deleteTodo(id: number): Promise<void>;
+  createTodo(params: { content: Todo['content'] }): Promise<Todo>;
+  updateTodo(id: Todo['id'], overrides: Partial<Todo>): Promise<Todo>;
+  deleteTodo(id: Todo['id']): Promise<void>;
 }
