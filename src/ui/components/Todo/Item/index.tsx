@@ -2,7 +2,13 @@ import elements from 'typed-html';
 
 import { Todo } from '@/app/entities/todo';
 
-export function TodoItem({ content, completed, id }: Todo) {
+interface TodoItemProps {
+  todo: Todo;
+}
+
+export function TodoItem({ todo }: TodoItemProps) {
+  const { id, content, completed } = todo;
+
   const containerId = `todo-${id}`;
 
   return (
