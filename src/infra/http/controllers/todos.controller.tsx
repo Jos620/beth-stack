@@ -5,11 +5,16 @@ import {
   createTodo,
   deleteTodo,
   toggleTodo,
+  updateTodo,
 } from '@/app/services/todos.service';
 import { DrizzleRepository } from '@/infra/database/drizzle';
 import { TodoItem } from '@/ui/components/Todo/Item';
 
-import { CreateTodoDto, UpdateTodoDto } from '../dto/todos';
+import {
+  CreateTodoDto,
+  UpdateTodoContentDto,
+  UpdateTodoDto,
+} from '../dto/todos';
 
 const db = DrizzleRepository.getInstance();
 
@@ -44,4 +49,13 @@ export const todosController = new Elysia({ prefix: '/todos' })
     {
       params: UpdateTodoDto,
     },
+  )
+  .put(
+    '/:id',
+    async ({ params, body }) => {
+      const newTodo = await updateTodo(db, params.id, body);
+
+      return <TodoItem todo={newTodo} />;
+    },
+    { params: UpdateTodoDto, body: UpdateTodoContentDto },
   );
