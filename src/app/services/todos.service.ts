@@ -43,3 +43,13 @@ export async function toggleTodo(db: TodosRepository, id: Todo['id']) {
 export async function deleteTodo(db: TodosRepository, id: Todo['id']) {
   return await db.deleteTodo(id);
 }
+
+export async function updateTodo(
+  db: TodosRepository,
+  id: Todo['id'],
+  overrides?: Partial<Todo>,
+) {
+  if (!overrides) return await getTodo(db, id);
+
+  return await db.updateTodo(id, overrides);
+}
