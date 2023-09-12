@@ -25,7 +25,6 @@ export function TodoItem({ todo }: TodoItemProps) {
         hx-trigger={`keyup[key=='Enter'], keyup delay:1s`}
         hx-target={`#${containerId}`}
         hx-swap="outerHTML"
-        _="on keydown[key is 'Enter'] halt"
       />
 
       <div>
