@@ -17,9 +17,9 @@ export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/',
     async ({ body }) => {
-      const newTodo = await createTodo(db, body.content);
+      const todo = await createTodo(db, body.content);
 
-      return <TodoItem {...newTodo} />;
+      return <TodoItem todo={todo} />;
     },
     {
       body: CreateTodoDto,
@@ -28,9 +28,9 @@ export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/toggle/:id',
     async ({ params }) => {
-      const newTodo = await toggleTodo(db, params.id);
+      const todo = await toggleTodo(db, params.id);
 
-      return <TodoItem {...newTodo} />;
+      return <TodoItem todo={todo} />;
     },
     {
       params: UpdateTodoDto,
