@@ -12,7 +12,9 @@ export class DrizzleRepository implements TodosRepository {
   private readonly client: Client;
   private readonly db: LibSQLDatabase<typeof schema>;
 
-  constructor() {
+  private static instance: DrizzleRepository;
+
+  private constructor() {
     this.client = createClient({
       url: process.env.DATABASE_URL!,
       authToken: process.env.DATABASE_AUTH_TOKEN,
@@ -22,6 +24,14 @@ export class DrizzleRepository implements TodosRepository {
       schema,
       logger: true,
     });
+  }
+
+  public static getInstance(): DrizzleRepository {
+    if (!DrizzleRepository.instance) {
+      DrizzleRepository.instance = new DrizzleRepository();
+    }
+
+    return DrizzleRepository.instance;
   }
 
   async getTodo(id: number): Promise<Todo | null> {
