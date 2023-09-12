@@ -9,7 +9,7 @@ export const DefaultBaseHtml = ({ children }: elements.Children) => `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BETH stack</title>
     <script src="https://unpkg.com/htmx.org@1.9.3"></script>
-    <script src="https://unpkg.com/hyperscript.org@0.9.9"></script>
+    <script src="https://unpkg.com/alpinejs@3" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css"></script>
   </head>
