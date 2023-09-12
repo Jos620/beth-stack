@@ -13,7 +13,7 @@ export function TodoList({ todos }: TodoListProps) {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem {...todo} />
+        <TodoItem todo={todo} />
       ))}
       <TodoForm />
     </div>
