@@ -13,7 +13,23 @@ export function TodoItem({ todo }: TodoItemProps) {
 
   return (
     <div id={containerId} class="flex flex-row justify-between space-x-3">
-      <p>{content}</p>
+      <form
+        hx-put={`/todos/${id}`}
+        hx-trigger={`keyup[key=='Enter'] from:input#todo-${id}-input,
+          keyup[
+            key!='ArrowRight' && key!='ArrowLeft' && key!='ArrowTop' && key!='ArrowBottom'
+          ] delay:1s from:input#todo-${id}-input`}
+        hx-target={`#${containerId}`}
+        hx-swap="outerHTML"
+      >
+        <input
+          id={`todo-${id}-input`}
+          value={content}
+          name="content"
+          maxlength="20"
+          _="on keydown[key is 'Enter'] halt"
+        />
+      </form>
 
       <div>
         <input
