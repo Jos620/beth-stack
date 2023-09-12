@@ -5,5 +5,5 @@ export const CreateTodoDto = t.Object({
 });
 
 export const UpdateTodoDto = t.Object({
-  id: t.Numeric(),
+  id: t.String(),
 });
