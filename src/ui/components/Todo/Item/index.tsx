@@ -1,3 +1,4 @@
+import sanitize from 'sanitize-html';
 import elements from 'typed-html';
 
 import { Todo } from '@/app/entities/todo';
@@ -10,6 +11,10 @@ export function TodoItem({ todo }: TodoItemProps) {
   const { id, content, completed } = todo;
 
   const containerId = `todo-${id}`;
+
+  const cleanContent = sanitize(content, {
+    allowedTags: [],
+  });
 
   return (
     <div id={containerId} class="flex flex-row justify-between space-x-3">
@@ -24,9 +29,8 @@ export function TodoItem({ todo }: TodoItemProps) {
       >
         <input
           id={`todo-${id}-input`}
-          value={content}
+          value={cleanContent}
           name="content"
-          maxlength="20"
           _="on keydown[key is 'Enter'] halt"
         />
       </form>
