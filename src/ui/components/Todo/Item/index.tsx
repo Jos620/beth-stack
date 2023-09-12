@@ -20,10 +20,10 @@ export function TodoItem({ todo }: TodoItemProps) {
     <div id={containerId} class="flex flex-row justify-between space-x-3">
       <form
         hx-put={`/todos/${id}`}
-        hx-trigger={`keyup[key=='Enter'] from:input#todo-${id}-input,
-          keyup[
-            key!='ArrowRight' && key!='ArrowLeft' && key!='ArrowTop' && key!='ArrowBottom'
-          ] delay:1s from:input#todo-${id}-input`}
+        hx-trigger={`
+          keyup[key=='Enter'] from:input#todo-${id}-input,
+          keyup delay:1s from:input#todo-${id}-input
+        `}
         hx-target={`#${containerId}`}
         hx-swap="outerHTML"
       >
