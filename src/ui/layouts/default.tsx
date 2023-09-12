@@ -1,6 +1,6 @@
 import elements from 'typed-html';
 
-export const DefaultBaseHtml = ({ children }: elements.Children) => `
+export const DefaultBaseHtml = ({ children }: elements.Children) => /* html */ `
   <!DOCTYPE html>
   <html lang="en">
 
