@@ -1,45 +1,41 @@
-import { eq } from 'drizzle-orm';
+import { TodosRepository } from '../repositories/todos.repo';
 
-import { db } from '@/infra/database';
-import { todos } from '@/infra/database/schema';
+export async function getTodo(db: TodosRepository, id: number) {
+  const todo = await db.getTodo(id);
 
-export async function getTodo(id: number) {
-  return await db.select().from(todos).where(eq(todos.id, id)).get();
+  if (!todo) {
+    throw new Error('Todo not found');
+  }
+
+  return todo;
 }
 
-export async function getAllTodos() {
-  return await db.select().from(todos).all();
+export async function getAllTodos(db: TodosRepository) {
+  return (await db.getTodos()) || [];
 }
 
-export async function createTodo(content: string) {
+export async function createTodo(db: TodosRepository, content: string) {
   if (content.length === 0) {
     throw new Error('Content cannot be empty');
   }
 
-  const newTodo = await db
-    .insert(todos)
-    .values({
-      content,
-    })
-    .returning()
-    .get();
+  const newTodo = await db.createTodo({
+    content,
+  });
 
   return newTodo;
 }
 
-export async function toggleTodo(id: number) {
-  const oldTodo = await getTodo(id);
+export async function toggleTodo(db: TodosRepository, id: number) {
+  const oldTodo = await getTodo(db, id);
 
-  const newTodo = await db
-    .update(todos)
-    .set({ completed: !oldTodo?.completed })
-    .where(eq(todos.id, id))
-    .returning()
-    .get();
+  const newTodo = await db.updateTodo(id, {
+    completed: !oldTodo?.completed,
+  });
 
   return newTodo;
 }
 
-export async function deleteTodo(id: number) {
-  await db.delete(todos).where(eq(todos.id, id)).run();
+export async function deleteTodo(db: TodosRepository, id: number) {
+  return await db.deleteTodo(id);
 }
