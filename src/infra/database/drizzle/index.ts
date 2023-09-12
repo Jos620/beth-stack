@@ -35,11 +35,11 @@ export class DrizzleRepository implements TodosRepository {
     return DrizzleRepository.instance;
   }
 
-  async getTodo(id: number): Promise<Todo | null> {
+  async getTodo(id: Todo['id']): Promise<Todo | null> {
     const todo = await this.db
       .select()
       .from(todos_table)
-      .where(eq(todos_table.id, id))
+      .where(eq(todos_table.id, parseInt(id)))
       .get();
 
     if (!todo) {
@@ -65,21 +65,24 @@ export class DrizzleRepository implements TodosRepository {
     return DrizzleTodoMapper.toDomain(newTodo);
   }
 
-  async updateTodo(id: number, overrides: Partial<Todo>): Promise<Todo> {
+  async updateTodo(id: string, overrides: Partial<Todo>): Promise<Todo> {
     const newTodo = await this.db
       .update(todos_table)
       .set({
         completed: overrides.completed,
         content: overrides.content,
       })
-      .where(eq(todos_table.id, id))
+      .where(eq(todos_table.id, parseInt(id)))
       .returning()
       .get();
 
     return DrizzleTodoMapper.toDomain(newTodo);
   }
 
-  async deleteTodo(id: number): Promise<void> {
-    await this.db.delete(todos_table).where(eq(todos_table.id, id)).run();
+  async deleteTodo(id: string): Promise<void> {
+    await this.db
+      .delete(todos_table)
+      .where(eq(todos_table.id, parseInt(id)))
+      .run();
   }
 }
