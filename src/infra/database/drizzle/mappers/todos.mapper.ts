@@ -9,7 +9,7 @@ export type DrizzleTodo = InferSelectModel<typeof todos>;
 export class DrizzleTodoMapper {
   static toPersistance(todo: Todo): DrizzleTodo {
     return {
-      id: todo.id,
+      id: parseInt(todo.id),
       content: todo.content,
       completed: todo.completed,
     };
@@ -21,7 +21,7 @@ export class DrizzleTodoMapper {
         content: todo.content,
         completed: todo.completed,
       },
-      todo.id,
+      todo.id.toString(),
     );
   }
 }
