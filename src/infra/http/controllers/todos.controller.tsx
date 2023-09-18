@@ -10,15 +10,12 @@ import {
 import { DrizzleRepository } from '@/infra/database/drizzle';
 import { TodoItem } from '@/ui/components/Todo/Item';
 
-import {
-  CreateTodoDto,
-  UpdateTodoContentDto,
-  UpdateTodoDto,
-} from '../dto/todos';
+import { todosModels } from '../dto/todos';
 
 const db = DrizzleRepository.getInstance();
 
 export const todosController = new Elysia({ prefix: '/todos' })
+  .use(todosModels)
   .post(
     '/',
     async ({ body }) => {
@@ -27,7 +24,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
       return <TodoItem todo={todo} />;
     },
     {
-      body: CreateTodoDto,
+      body: 'createTodo',
     },
   )
   .post(
@@ -38,7 +35,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
       return <TodoItem todo={todo} />;
     },
     {
-      params: UpdateTodoDto,
+      params: 'locateTodo',
     },
   )
   .delete(
@@ -47,7 +44,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
       await deleteTodo(db, params.id);
     },
     {
-      params: UpdateTodoDto,
+      params: 'locateTodo',
     },
   )
   .put(
@@ -57,5 +54,8 @@ export const todosController = new Elysia({ prefix: '/todos' })
 
       return <TodoItem todo={newTodo} />;
     },
-    { params: UpdateTodoDto, body: UpdateTodoContentDto },
+    {
+      params: 'locateTodo',
+      body: 'updateTodo',
+    },
   );

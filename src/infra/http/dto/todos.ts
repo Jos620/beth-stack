@@ -1,14 +1,16 @@
-import { t } from 'elysia';
+import Elysia, { t } from 'elysia';
 
-export const CreateTodoDto = t.Object({
-  content: t.String(),
-});
+export const todosModels = new Elysia().model({
+  locateTodo: t.Object({
+    id: t.String(),
+  }),
 
-export const UpdateTodoDto = t.Object({
-  id: t.String(),
-});
+  createTodo: t.Object({
+    content: t.String(),
+  }),
 
-export const UpdateTodoContentDto = t.Object({
-  content: t.Optional(t.String()),
-  completed: t.Optional(t.Boolean()),
+  updateTodo: t.Object({
+    content: t.Optional(t.String()),
+    completed: t.Optional(t.Boolean()),
+  }),
 });
