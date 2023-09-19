@@ -9,22 +9,22 @@ interface TodoListProps {
 }
 
 export function TodoList({ todos }: TodoListProps) {
+  if (!todos) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div id="todo-list">
-      {todos ? (
-        todos.length > 0 ? (
-          <ul>
-            {todos.map((todo) => (
-              <li>
-                <TodoItem todo={todo} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>There are no todos yet.</p>
-        )
+      {todos.length > 0 ? (
+        <ul>
+          {todos.map((todo) => (
+            <li>
+              <TodoItem todo={todo} />
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>Loading...</p>
+        <p>There are no todos yet.</p>
       )}
     </div>
   );
