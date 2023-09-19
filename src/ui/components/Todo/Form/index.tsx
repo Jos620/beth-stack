@@ -6,7 +6,7 @@ export function TodoForm() {
       class="flex flex-row space-x-3 pt-4"
       hx-post="/todos"
       hx-target="#todo-list"
-      hx-swap="afterend"
+      hx-swap="outerHTML"
       x-data
       x-on:submit="$nextTick(() => $el.reset())"
     >
