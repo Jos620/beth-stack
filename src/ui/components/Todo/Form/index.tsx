@@ -3,13 +3,13 @@ import elements from 'typed-html';
 export function TodoForm() {
   return (
     <form
-      class="flex flex-row space-x-3"
+      class="flex flex-row space-x-3 pt-4"
       hx-post="/todos"
       hx-swap="beforebegin"
       x-data
       x-on:submit="$nextTick(() => $el.reset())"
     >
-      <input type="text" name="content" class="border border-black" />
+      <input type="text" name="content" class="border border-black rounded" />
       <button type="submit">Add</button>
     </form>
   );
