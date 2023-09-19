@@ -16,16 +16,14 @@ export function TodoList({ todos }: TodoListProps) {
   return (
     <div id="todo-list">
       {todos.length > 0 ? (
-        <ul>
-          {todos.map((todo) => (
-            <li>
-              <TodoItem todo={todo} />
-            </li>
-          ))}
-        </ul>
+        todos.map((todo) => <TodoItem todo={todo} />)
       ) : (
-        <p>There are no todos yet.</p>
+        <EmptyFallback />
       )}
     </div>
   );
+}
+
+export function EmptyFallback() {
+  return <p>There are no todos yet.</p>;
 }
