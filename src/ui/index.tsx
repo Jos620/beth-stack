@@ -13,9 +13,15 @@ export const DefaultBaseHtml = ({ children }: elements.Children) => /* html */ `
     <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css" />
+
+    <style>
+      [un-cloak] {
+        display: none !important;
+      }
+    </style>
   </head>
 
-  <body hx-boost="true">
+  <body hx-boost="true" un-cloak>
     ${children}
   </body>
 
