@@ -4,8 +4,7 @@ import elements from 'typed-html';
 
 import { getAllTodos } from '@/app/services/todos.service';
 import { DrizzleRepository } from '@/infra/database/drizzle';
-import { TodoList } from '@/ui/components/Todo/List';
-import { DefaultLayout } from '@/ui/layouts/default';
+import { HomePage } from '@/ui/pages/home';
 
 const db = DrizzleRepository.getInstance();
 
@@ -14,9 +13,5 @@ export const mainController = new Elysia()
   .get('/', async ({ html }) => {
     const todos = await getAllTodos(db);
 
-    return html(
-      <DefaultLayout>
-        <TodoList todos={todos} />
-      </DefaultLayout>,
-    );
+    return html(<HomePage todos={todos}></HomePage>);
   });
