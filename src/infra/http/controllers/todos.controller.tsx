@@ -49,6 +49,9 @@ export const todosController = new Elysia({ prefix: '/todos' })
     '/:id',
     async ({ params }) => {
       await deleteTodo(db, params.id);
+
+      const todos = await getAllTodos(db);
+      if (!todos.length) return <EmptyFallback />;
     },
     {
       params: 'locateTodo',
