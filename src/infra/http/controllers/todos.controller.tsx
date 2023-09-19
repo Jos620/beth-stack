@@ -10,7 +10,7 @@ import {
 } from '@/app/services/todos.service';
 import { DrizzleRepository } from '@/infra/database/drizzle';
 import { TodoItem } from '@/ui/components/Todo/Item';
-import { TodoList } from '@/ui/components/Todo/List';
+import { EmptyFallback, TodoList } from '@/ui/components/Todo/List';
 
 import { todosModels } from '../dto/todos';
 
@@ -26,9 +26,10 @@ export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/',
     async ({ body }) => {
-      const todo = await createTodo(db, body.content);
+      await createTodo(db, body.content);
+      const todos = await getAllTodos(db);
 
-      return <TodoItem todo={todo} />;
+      return <TodoList todos={todos} />;
     },
     {
       body: 'createTodo',
