@@ -12,7 +12,9 @@ export function TodoList({ todos }: TodoListProps) {
   return (
     <ul id="todo-list">
       {todos.map((todo) => (
-        <TodoItem todo={todo} />
+        <li>
+          <TodoItem todo={todo} />
+        </li>
       ))}
     </ul>
   );
