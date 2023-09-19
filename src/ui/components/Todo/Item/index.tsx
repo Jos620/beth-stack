@@ -31,10 +31,12 @@ export function TodoItem({ todo }: TodoItemProps) {
         <input
           type="checkbox"
           checked={completed}
+          name="completed"
           hx-post={`/todos/toggle/${id}`}
           hx-target={`#${containerId}`}
           hx-swap="outerHTML"
         />
+
         <button
           class="text-red-500"
           hx-delete={`/todos/${id}`}
