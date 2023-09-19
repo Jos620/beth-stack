@@ -1,23 +1,15 @@
 import elements from 'typed-html';
 
-import { Todo } from '@/app/entities/todo';
-
 import { TodoForm } from '../components/Todo/Form';
 import { TodoList } from '../components/Todo/List';
 import { DefaultLayout } from '../layouts/default';
 
-interface HomePageProps {
-  todos?: Todo[];
-}
-
-export function HomePage({ todos }: HomePageProps) {
+export function HomePage() {
   return (
     <DefaultLayout>
-      {todos?.length ? (
-        <TodoList todos={todos} />
-      ) : (
-        <p>There are no todos yet. Add one!</p>
-      )}
+      <div hx-get="/todos" hx-trigger="load">
+        <TodoList />
+      </div>
 
       <TodoForm />
     </DefaultLayout>
