@@ -5,7 +5,8 @@ export function TodoForm() {
     <form
       class="flex flex-row space-x-3 pt-4"
       hx-post="/todos"
-      hx-swap="beforebegin"
+      hx-target="#todo-list"
+      hx-swap="afterend"
       x-data
       x-on:submit="$nextTick(() => $el.reset())"
     >

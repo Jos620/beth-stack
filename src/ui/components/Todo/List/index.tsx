@@ -2,7 +2,6 @@ import elements from 'typed-html';
 
 import { Todo } from '@/app/entities/todo';
 
-import { TodoForm } from '../Form';
 import { TodoItem } from '../Item';
 
 interface TodoListProps {
@@ -11,11 +10,10 @@ interface TodoListProps {
 
 export function TodoList({ todos }: TodoListProps) {
   return (
-    <div>
+    <ul id="todo-list">
       {todos.map((todo) => (
         <TodoItem todo={todo} />
       ))}
-      <TodoForm />
-    </div>
+    </ul>
   );
 }
