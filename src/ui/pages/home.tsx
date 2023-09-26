@@ -7,7 +7,7 @@ import { DefaultLayout } from '../layouts/default';
 export function HomePage() {
   return (
     <DefaultLayout>
-      <div hx-get="/todos" hx-trigger="load">
+      <div hx-get="/todos" hx-trigger="load" hx-swap="outerHTML">
         <TodoList />
       </div>
 
