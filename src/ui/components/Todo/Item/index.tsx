@@ -1,4 +1,4 @@
-import sanitize from 'sanitize-html';
+import { escapeHtml } from '@kitajs/html';
 
 import { Todo } from '@/app/entities/todo';
 
@@ -11,9 +11,7 @@ export function TodoItem({ todo }: TodoItemProps) {
 
   const containerId = `todo-${id}`;
 
-  const cleanContent = sanitize(content, {
-    allowedTags: [],
-  });
+  const cleanContent = escapeHtml(content);
 
   return (
     <div id={containerId} class="flex flex-row justify-between space-x-3">
