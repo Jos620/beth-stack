@@ -1,5 +1,3 @@
-import elements from 'typed-html';
-
 import { TodoForm } from '../components/Todo/Form';
 import { TodoList } from '../components/Todo/List';
 import { DefaultLayout } from '../layouts/default';
