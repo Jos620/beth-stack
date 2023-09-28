@@ -1,12 +1,8 @@
 import '@kitajs/html/register';
 
-import { Children } from '@kitajs/html';
+import { PropsWithChildren } from '@kitajs/html';
 
-interface Props {
-  children: Children;
-}
-
-export const DefaultBaseHtml = ({ children }: Props) => /* html */ `
+export const DefaultBaseHtml = ({ children }: PropsWithChildren) => /* html */ `
   <!DOCTYPE html>
   <html lang="en">
 

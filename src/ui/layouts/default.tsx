@@ -1,12 +1,8 @@
-import { Children } from '@kitajs/html';
+import { PropsWithChildren } from '@kitajs/html';
 
 import { DefaultBaseHtml } from '../.';
 
-interface DefaultLayoutProps {
-  children: Children;
-}
-
-export function DefaultLayout({ children }: DefaultLayoutProps) {
+export function DefaultLayout({ children }: PropsWithChildren) {
   return (
     <DefaultBaseHtml>
       <main class="flex flex-col justify-center items-center w-screen h-screen">
