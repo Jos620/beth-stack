@@ -1,6 +1,12 @@
-import elements from 'typed-html';
+import '@kitajs/html/register';
 
-export const DefaultBaseHtml = ({ children }: elements.Children) => /* html */ `
+import { Children } from '@kitajs/html';
+
+interface Props {
+  children: Children;
+}
+
+export const DefaultBaseHtml = ({ children }: Props) => /* html */ `
   <!DOCTYPE html>
   <html lang="en">
 

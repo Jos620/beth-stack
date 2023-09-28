@@ -1,5 +1,3 @@
-import elements from 'typed-html';
-
 import { Todo } from '@/app/entities/todo';
 
 import { TodoItem } from '../Item';

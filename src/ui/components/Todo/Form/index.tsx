@@ -1,5 +1,3 @@
-import elements from 'typed-html';
-
 export function TodoForm() {
   return (
     <form

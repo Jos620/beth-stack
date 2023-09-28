@@ -1,8 +1,12 @@
-import elements from 'typed-html';
+import { Children } from '@kitajs/html';
 
 import { DefaultBaseHtml } from '../.';
 
-export function DefaultLayout({ children }: elements.Children) {
+interface DefaultLayoutProps {
+  children: Children;
+}
+
+export function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <DefaultBaseHtml>
       <main class="flex flex-col justify-center items-center w-screen h-screen">
