@@ -1,5 +1,4 @@
 import { Elysia } from 'elysia';
-import elements from 'typed-html';
 
 import {
   createTodo,
