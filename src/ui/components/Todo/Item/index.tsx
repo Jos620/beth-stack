@@ -26,7 +26,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         hx-swap="outerHTML"
       />
 
-      <div>
+      <div class="space-x-2">
         <input
           type="checkbox"
           checked={completed}
