@@ -1,5 +1,6 @@
 import { Todo } from '@/app/entities/todo';
 
+import { Loading } from '../../Loading';
 import { TodoItem } from '../Item';
 
 interface TodoListProps {
@@ -8,7 +9,7 @@ interface TodoListProps {
 
 export function TodoList({ todos }: TodoListProps) {
   if (!todos) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
