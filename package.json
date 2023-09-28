@@ -21,7 +21,6 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.3",
     "tsc": "^2.0.4",
-    "typed-html": "^3.0.1",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
