@@ -12,7 +12,8 @@
     "downlevelIteration": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "jsxFactory": "elements.createElement",
+    "jsxFactory": "Html.createElement",
+    "jsxFragmentFactory": "Html.Fragment",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
@@ -22,6 +23,11 @@
     "paths": {
       "@": ["./src"],
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "@kitajs/ts-html-plugin"
+      }
+    ]
   }
 }
