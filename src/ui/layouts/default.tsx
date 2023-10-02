@@ -1,6 +1,6 @@
 import { PropsWithChildren } from '@kitajs/html';
 
-import { DefaultBaseHtml } from '../.';
+import { DefaultBaseHtml } from '@/ui';
 
 export function DefaultLayout({ children }: PropsWithChildren) {
   return (
