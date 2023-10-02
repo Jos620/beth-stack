@@ -39,7 +39,7 @@ export class DrizzleRepository implements TodosRepository {
     const todo = await this.db
       .select()
       .from(todos_table)
-      .where(eq(todos_table.id, parseInt(id)))
+      .where(eq(todos_table.id, id))
       .get();
 
     if (!todo) {
@@ -72,7 +72,7 @@ export class DrizzleRepository implements TodosRepository {
         completed: overrides.completed,
         content: overrides.content,
       })
-      .where(eq(todos_table.id, parseInt(id)))
+      .where(eq(todos_table.id, id))
       .returning()
       .get();
 
@@ -80,9 +80,6 @@ export class DrizzleRepository implements TodosRepository {
   }
 
   async deleteTodo(id: Todo['id']): Promise<void> {
-    await this.db
-      .delete(todos_table)
-      .where(eq(todos_table.id, parseInt(id)))
-      .run();
+    await this.db.delete(todos_table).where(eq(todos_table.id, id)).run();
   }
 }
