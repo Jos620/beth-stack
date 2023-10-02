@@ -1,55 +1,52 @@
 import { Todo } from '../entities/todo';
 import { TodosRepository } from '../repositories/todos.repo';
 
-export async function getTodo(db: TodosRepository, id: Todo['id']) {
-  const todo = await db.getTodo(id);
+export class TodosService {
+  constructor(private readonly db: TodosRepository) {}
 
-  if (!todo) {
-    throw new Error('Todo not found');
+  async getTodo(id: Todo['id']) {
+    const todo = await this.db.getTodo(id);
+
+    if (!todo) {
+      throw new Error('Todo not found');
+    }
+
+    return todo;
   }
 
-  return todo;
-}
-
-export async function getAllTodos(db: TodosRepository) {
-  return (await db.getTodos()) || [];
-}
-
-export async function createTodo(
-  db: TodosRepository,
-  content: Todo['content'],
-) {
-  if (content.length === 0) {
-    throw new Error('Content cannot be empty');
+  async getAllTodos() {
+    return (await this.db.getTodos()) || [];
   }
 
-  const newTodo = await db.createTodo({
-    content,
-  });
+  async createTodo(content: Todo['content']) {
+    if (content.length === 0) {
+      throw new Error('Content cannot be empty');
+    }
 
-  return newTodo;
-}
+    const newTodo = await this.db.createTodo({
+      content,
+    });
 
-export async function toggleTodo(db: TodosRepository, id: Todo['id']) {
-  const oldTodo = await getTodo(db, id);
+    return newTodo;
+  }
 
-  const newTodo = await db.updateTodo(id, {
-    completed: !oldTodo?.completed,
-  });
+  async toggleTodo(id: Todo['id']) {
+    const oldTodo = await this.getTodo(id);
 
-  return newTodo;
-}
+    const newTodo = await this.db.updateTodo(id, {
+      completed: !oldTodo?.completed,
+    });
 
-export async function deleteTodo(db: TodosRepository, id: Todo['id']) {
-  return await db.deleteTodo(id);
-}
+    return newTodo;
+  }
 
-export async function updateTodo(
-  db: TodosRepository,
-  id: Todo['id'],
-  overrides?: Partial<Todo>,
-) {
-  if (!overrides) return await getTodo(db, id);
+  async deleteTodo(id: Todo['id']) {
+    return await this.db.deleteTodo(id);
+  }
 
-  return await db.updateTodo(id, overrides);
+  async updateTodo(id: Todo['id'], overrides?: Partial<Todo>) {
+    if (!overrides) return await this.getTodo(id);
+
+    return await this.db.updateTodo(id, overrides);
+  }
 }
