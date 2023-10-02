@@ -1,5 +1,3 @@
-import { randomUUID } from 'node:crypto';
-
 import { Replace } from '../helpers/types';
 
 interface TodoProps {
@@ -8,11 +6,11 @@ interface TodoProps {
 }
 
 export class Todo {
-  private _id: string;
+  private _id: number;
   private props: TodoProps;
 
-  constructor(props: Replace<TodoProps, { completed?: boolean }>, id?: string) {
-    this._id = id ?? randomUUID();
+  constructor(props: Replace<TodoProps, { completed?: boolean }>, id?: number) {
+    this._id = id ?? Date.now() + Math.floor(Math.random() * 1000);
     this.props = {
       ...props,
       completed: props.completed || false,
