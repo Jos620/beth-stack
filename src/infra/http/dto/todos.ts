@@ -2,7 +2,7 @@ import Elysia, { t } from 'elysia';
 
 export const todosModels = new Elysia().model({
   locateTodo: t.Object({
-    id: t.String(),
+    id: t.Number(),
   }),
 
   createTodo: t.Object({
