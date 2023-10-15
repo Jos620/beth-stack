@@ -21,7 +21,7 @@ export class DrizzleTodoMapper {
         content: todo.content,
         completed: todo.completed,
       },
-      todo.id,
+      todo.id
     );
   }
 }

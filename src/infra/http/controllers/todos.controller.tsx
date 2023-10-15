@@ -27,7 +27,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
     },
     {
       body: 'createTodo',
-    },
+    }
   )
   .post(
     '/toggle/:id',
@@ -38,7 +38,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
     },
     {
       params: 'locateTodo',
-    },
+    }
   )
   .delete(
     '/:id',
@@ -50,7 +50,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
     },
     {
       params: 'locateTodo',
-    },
+    }
   )
   .put(
     '/:id',
@@ -62,5 +62,5 @@ export const todosController = new Elysia({ prefix: '/todos' })
     {
       params: 'locateTodo',
       body: 'updateTodo',
-    },
+    }
   );

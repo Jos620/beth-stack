@@ -10,6 +10,6 @@ export const mainController = new Elysia()
     html(
       <DefaultLayout>
         <HomePage />
-      </DefaultLayout>,
-    ),
+      </DefaultLayout>
+    )
   );
