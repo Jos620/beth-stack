@@ -19,7 +19,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         value={cleanContent}
         name="content"
         hx-put={`/todos/${id}`}
-        hx-trigger="keyup[key=='Enter'], keyup delay:1s"
+        hx-trigger="keyup[key=='Enter'] changed, keyup delay:1s changed"
         hx-target={`#${containerId}`}
         hx-swap="outerHTML"
       />
