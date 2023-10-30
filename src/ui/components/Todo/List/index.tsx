@@ -9,7 +9,11 @@ interface TodoListProps {
 
 export function TodoList({ todos }: TodoListProps) {
   if (!todos) {
-    return <Loading />;
+    return (
+      <div hx-trigger="load" hx-get="/todos" hx-swap="outerHTML">
+        <Loading />
+      </div>
+    );
   }
 
   return (
