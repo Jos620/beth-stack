@@ -1,13 +1,16 @@
 import { PropsWithChildren } from '@kitajs/html';
 
 import { DefaultBaseHtml } from '@/ui';
+import { Navigation } from '@/ui/components/Navigation';
 
 export function DefaultLayout({ children }: PropsWithChildren) {
   return (
     <DefaultBaseHtml>
-      <main class="flex flex-col justify-center items-center w-screen h-screen">
+      <div class="flex flex-col justify-center items-center w-screen h-screen">
         {children}
-      </main>
+
+        <Navigation />
+      </div>
     </DefaultBaseHtml>
   );
 }
