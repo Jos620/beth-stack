@@ -10,6 +10,7 @@ export function TodoItem({ todo }: TodoItemProps) {
   const { id, content, completed } = todo;
 
   const containerId = `todo-${id}`;
+  const target = `#${containerId}`;
 
   const cleanContent = escapeHtml(content);
 
@@ -20,7 +21,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         name="content"
         hx-put={`/todos/${id}`}
         hx-trigger="keyup[key=='Enter'] changed, keyup delay:1s changed"
-        hx-target={`#${containerId}`}
+        hx-target={target}
         hx-swap="outerHTML"
       />
 
@@ -30,14 +31,14 @@ export function TodoItem({ todo }: TodoItemProps) {
           checked={completed}
           name="completed"
           hx-post={`/todos/toggle/${id}`}
-          hx-target={`#${containerId}`}
+          hx-target={target}
           hx-swap="outerHTML"
         />
 
         <button
           class="text-red-500"
           hx-delete={`/todos/${id}`}
-          hx-target={`#${containerId}`}
+          hx-target={target}
           hx-swap="outerHTML"
         >
           X
