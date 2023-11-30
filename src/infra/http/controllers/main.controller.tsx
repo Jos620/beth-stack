@@ -7,6 +7,7 @@ import { HomePage } from '@/ui/pages/home';
 
 export const mainController = new Elysia()
   .use(html())
+  .get('/styles', async () => Bun.file('public/uno.css'))
   .get('/', async ({ html }) =>
     html(
       <DefaultLayout>
