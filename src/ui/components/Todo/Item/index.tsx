@@ -15,14 +15,17 @@ export function TodoItem({ todo }: TodoItemProps) {
   const cleanContent = escapeHtml(content);
 
   return (
-    <div id={containerId} class="flex flex-row justify-between space-x-3">
+    <div
+      id={containerId}
+      class="flex flex-row justify-between space-x-3"
+      hx-target={target}
+      hx-swap="outerHTML"
+    >
       <input
         value={cleanContent}
         name="content"
         hx-put={`/todos/${id}`}
         hx-trigger="keyup[key=='Enter'] changed, keyup delay:1s changed"
-        hx-target={target}
-        hx-swap="outerHTML"
       />
 
       <div class="space-x-2">
@@ -31,16 +34,9 @@ export function TodoItem({ todo }: TodoItemProps) {
           checked={completed}
           name="completed"
           hx-post={`/todos/toggle/${id}`}
-          hx-target={target}
-          hx-swap="outerHTML"
         />
 
-        <button
-          class="text-red-500"
-          hx-delete={`/todos/${id}`}
-          hx-target={target}
-          hx-swap="outerHTML"
-        >
+        <button class="text-red-500" hx-delete={`/todos/${id}`}>
           X
         </button>
       </div>
