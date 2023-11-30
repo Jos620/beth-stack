@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
+    "dev:styles": "unocss \"src/**/*{ts,tsx}\" -o \"public/uno.css\" --watch",
     "start": "bun run src/index.ts",
+    "start:styles": "unocss \"src/**/*{ts,tsx}\" -o \"public/uno.css\"",
     "db:push": "drizzle-kit push:sqlite",
     "db:studio": "drizzle-kit studio",
     "typecheck": "bunx tsc --noEmit",
@@ -23,7 +25,8 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "unocss": "^0.57.7"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
