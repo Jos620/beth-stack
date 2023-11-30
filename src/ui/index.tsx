@@ -13,17 +13,11 @@ export const DefaultBaseHtml = ({ children }: PropsWithChildren) => /* html */ `
     <script src="https://unpkg.com/htmx.org@1.9.3"></script>
     <script src="https://unpkg.com/alpinejs@3" defer></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css" />
-
-    <style>
-      [un-cloak] {
-        display: none !important;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles">
   </head>
 
-  <body hx-boost="true" un-cloak>
+  <body hx-boost="true">
     ${children}
   </body>
 
