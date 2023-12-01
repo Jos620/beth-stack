@@ -3,6 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
+    "pre:dev": "kill-port 3000",
     "dev": "bun run --watch src/index.ts",
     "dev:styles": "unocss \"src/**/*{ts,tsx}\" -o \"public/uno.css\" --watch",
     "start": "bun run src/index.ts",
@@ -13,7 +14,7 @@
     "lint:js": "eslint --ext .ts,.tsx src --fix",
     "lint:types": "run-s 'typecheck'",
     "run:lint": "run-p lint:*",
-    "run:dev": "run-p dev dev:styles",
+    "run:dev": "run-s pre:dev && run-p dev dev:styles",
     "run:start": "run-p start:styles start"
   },
   "devDependencies": {
