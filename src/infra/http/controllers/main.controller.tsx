@@ -1,7 +1,7 @@
 import html from '@elysiajs/html';
 import Elysia from 'elysia';
 
-import { DefaultLayout } from '@/ui/layouts/default';
+import { DefaultBaseHtml } from '@/ui';
 import { AboutPage } from '@/ui/pages/about';
 import { HomePage } from '@/ui/pages/home';
 
@@ -10,15 +10,15 @@ export const mainController = new Elysia()
   .get('/styles', async () => Bun.file('public/uno.css'))
   .get('/', async ({ html }) =>
     html(
-      <DefaultLayout>
+      <DefaultBaseHtml>
         <HomePage />
-      </DefaultLayout>
+      </DefaultBaseHtml>
     )
   )
   .get('/about', ({ html }) =>
     html(
-      <DefaultLayout>
+      <DefaultBaseHtml>
         <AboutPage />
-      </DefaultLayout>
+      </DefaultBaseHtml>
     )
   );
