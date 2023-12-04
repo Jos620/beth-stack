@@ -1,12 +1,10 @@
-import { html } from '@elysiajs/html';
-import { Elysia } from 'elysia';
+import Elysia from 'elysia';
 
 import { assetsController } from '@/infra/http/controllers/assets.controller';
 import { mainController } from '@/infra/http/controllers/main.controller';
 import { todosController } from '@/infra/http/controllers/todos.controller';
 
 const app = new Elysia()
-  .use(html())
   .use(assetsController)
   .use(mainController)
   .use(todosController)
