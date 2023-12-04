@@ -5,11 +5,11 @@ import { DefaultBaseHtml } from '@/ui';
 import { AboutPage } from '@/ui/pages/about';
 import { HomePage } from '@/ui/pages/home';
 
-import { htmxPlugin } from '../helpers/htmx';
+import { htmx } from '../helpers/htmx';
 
 export const mainController = new Elysia()
   .use(html())
-  .use(htmxPlugin())
+  .use(htmx())
   .get('/', async ({ headers, html, isHTMXRequest }) => {
     if (isHTMXRequest(headers)) {
       return <HomePage />;

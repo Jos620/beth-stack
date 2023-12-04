@@ -1,6 +1,6 @@
 import Elysia, { Context } from 'elysia';
 
-export function htmxPlugin() {
+export function htmx() {
   return new Elysia()
     .decorate(
       'isHTMXRequest',
