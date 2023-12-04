@@ -171,3 +171,7 @@ dist
 
 # Spelling check
 cspell.json
+
+# Assets
+
+public/uno.css
