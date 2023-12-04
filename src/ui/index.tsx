@@ -14,7 +14,7 @@ export const DefaultBaseHtml = ({ children }: PropsWithChildren) => /* html */ `
     <script src="https://unpkg.com/alpinejs@3" defer></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.css" />
-    <link rel="stylesheet" href="/styles">
+    <link rel="stylesheet" href="/assets/styles">
   </head>
 
   <body hx-boost="true">
