@@ -10,7 +10,6 @@ import { htmxPlugin } from '../helpers/htmx';
 export const mainController = new Elysia()
   .use(html())
   .use(htmxPlugin())
-  .get('/styles', async () => Bun.file('public/uno.css'))
   .get('/', async ({ headers, html, isHTMXRequest }) => {
     if (isHTMXRequest(headers)) {
       return <HomePage />;
