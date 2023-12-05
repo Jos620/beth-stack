@@ -2,6 +2,7 @@ import { Elysia } from 'elysia';
 
 import { TodosService } from '@/app/services/todos.service';
 import { DrizzleRepository } from '@/infra/database/drizzle';
+import { TodoForm } from '@/ui/components/Todo/Form';
 import { TodoItem } from '@/ui/components/Todo/Item';
 import { EmptyFallback, TodoList } from '@/ui/components/Todo/List';
 
@@ -20,10 +21,17 @@ export const todosController = new Elysia({ prefix: '/todos' })
   .post(
     '/',
     async ({ body }) => {
-      await service.createTodo(body.content);
+      const newTodo = await service.createTodo(body.content);
       const todos = await service.getAllTodos();
 
-      return <TodoList todos={todos} />;
+      return todos.length === 1 ? (
+        <>
+          <TodoList todos={todos} />
+          <TodoForm hx-swap-oob="true" hx-swap="beforeend" />
+        </>
+      ) : (
+        <TodoItem todo={newTodo} />
+      );
     },
     {
       body: 'createTodo',
@@ -47,7 +55,12 @@ export const todosController = new Elysia({ prefix: '/todos' })
 
       const todos = await service.getAllTodos();
       if (!todos.length) {
-        return <EmptyFallback />;
+        return (
+          <>
+            <EmptyFallback />
+            <TodoForm hx-swap-oob="true" hx-swap="outerHTML" />
+          </>
+        );
       }
 
       return null;
