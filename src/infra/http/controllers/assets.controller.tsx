@@ -1,6 +1,6 @@
 import Elysia from 'elysia';
 
 export const assetsController = new Elysia({ prefix: 'assets' }).get(
-  '/styles',
+  '/uno.css',
   async () => Bun.file('public/uno.css')
 );
