@@ -1,5 +1,8 @@
 {
-  "plugins": ["@typescript-eslint/eslint-plugin", "simple-import-sort"],
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "simple-import-sort"
+  ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
@@ -9,22 +12,37 @@
     "node": true,
     "jest": true
   },
-  "ignorePatterns": [".eslintrc.js"],
+  "ignorePatterns": [
+    ".eslintrc.js"
+  ],
   "rules": {
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "comma-dangle": ["error", "always-multiline"],
-
-    "simple-import-sort/imports": ["error", {
-      "groups": [
-        ["^\\u0000"], // Side effect imports
-        ["^@?\\w"], // Paths
-        ["^"], // Absolute imports
-        ["^\\."] // Relative imports
-      ]
-    }],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^\\u0000"
+          ], // Side effect imports
+          [
+            "^@?\\w"
+          ], // Paths
+          [
+            "^"
+          ], // Absolute imports
+          [
+            "^\\."
+          ] // Relative imports
+        ]
+      }
+    ],
     "simple-import-sort/exports": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
