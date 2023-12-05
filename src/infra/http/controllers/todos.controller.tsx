@@ -27,7 +27,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
       return todos.length === 1 ? (
         <>
           <TodoList todos={todos} />
-          <TodoForm hx-swap-oob="true" hx-swap="beforeend" />
+          <TodoForm hx-swap="beforeend" />
         </>
       ) : (
         <TodoItem todo={newTodo} />
@@ -58,7 +58,7 @@ export const todosController = new Elysia({ prefix: '/todos' })
         return (
           <>
             <EmptyFallback />
-            <TodoForm hx-swap-oob="true" hx-swap="outerHTML" />
+            <TodoForm hx-swap="outerHTML" />
           </>
         );
       }

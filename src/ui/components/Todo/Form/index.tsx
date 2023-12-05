@@ -5,6 +5,7 @@ export function TodoForm(props?: Htmx.Attributes) {
       hx-post="/todos"
       hx-target="#todo-list"
       hx-swap="beforeend"
+      hx-swap-oob="true"
       x-data
       x-on:submit="$nextTick(() => $el.reset())"
       flex="~ row"
