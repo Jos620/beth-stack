@@ -17,9 +17,11 @@ export function TodoItem({ todo }: TodoItemProps) {
   return (
     <div
       id={containerId}
-      class="flex flex-row justify-between space-x-3"
       hx-target={target}
       hx-swap="outerHTML"
+      row
+      justify-between
+      space-x-3
     >
       <input
         value={cleanContent}
@@ -28,7 +30,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         hx-trigger="keyup[key=='Enter'] changed, keyup delay:1s changed"
       />
 
-      <div class="space-x-2">
+      <div space-x-2>
         <input
           type="checkbox"
           checked={completed}
@@ -36,7 +38,7 @@ export function TodoItem({ todo }: TodoItemProps) {
           hx-post={`/todos/toggle/${id}`}
         />
 
-        <button class="text-red-500" hx-delete={`/todos/${id}`}>
+        <button hx-delete={`/todos/${id}`} text-red-500>
           X
         </button>
       </div>
